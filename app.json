@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/home/homeIndex",
+    "pages/myself/myselfIndex",
+    "pages/comment/commentIndex",
+    "pages/detail/detailIndex",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小程序名称",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/homeIndex",
+        "text": "首页",
+        "iconPath": "./image/home.png",
+        "selectedIconPath": "./image/home_bg.png"
+      },
+      {
+        "pagePath": "pages/myself/myselfIndex",
+        "text": "我的",
+        "iconPath": "./image/my.png",
+        "selectedIconPath": "./image/mg_bg.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "my-rate": "/components/rate/rate"
+  }
+}

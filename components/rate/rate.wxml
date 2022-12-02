@@ -1,0 +1,7 @@
+<!-- wxml -->
+<view class="scoreBox">
+  <view wx:for="{{starImgs}}" wx:key="id" bindtap='select' data-index="{{item.id}}" class="startImg">
+    <image src="{{item.id > rate ? star_empty : star_full}}" mode="aspectFit" class="star"></image>
+  </view>
+  <!-- <view wx:if="{{rateIsSelect}}">{{starImgs[rate - 1].level}}</view> -->
+</view>

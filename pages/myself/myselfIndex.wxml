@@ -1,0 +1,23 @@
+<!--pages/myself/myselfIndex.wxml-->
+<view>
+  <view class="heard">
+    <image src="../../image/home_bg.png" mode="aspectFit" class="myImg"></image>
+    <view style="display: inline;margin: 60rpx 0 60rpx 20rpx;">
+      <view style="margin-bottom: 30rpx;"> 用户昵称 </view>
+      <view wx:if="{{userFlag}}"> 用户 </view>
+      <view wx:else> 管理员 </view>
+    </view>
+  </view>
+  <view wx:if="{{userFlag}}" class="heardCon">
+    我评价的
+  </view>
+  <view wx:else class="heardCon">
+    <view>
+      我发布的
+    </view>
+    <view>
+      我评论的
+    </view>
+  </view>
+  <text bindtap="btn" style="cursor: pointer;border: 1px solid #000;">测试切换身份</text>
+</view>

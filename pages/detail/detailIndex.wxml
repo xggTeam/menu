@@ -1,0 +1,22 @@
+<!--pages/detail/detailIndex.wxml-->
+<view class="detail">
+  <view style="display: flex;">
+    <image class="detailImg" src="../../image/home.png" mode="aspectFit"></image>
+    <view class="detailRight">
+      <text class="detailDes">{{menuName}}</text>
+      <view class="detailRate">评分：{{menuName}}</view>
+    </view>
+  </view>
+  <block>
+    <view wx:for="{{commentList}}" wx:key="index" class="comment">
+      <view style="flex: 1;">评论：{{item.dec}}</view>
+      <view>评分{{item.rate}}</view>
+    </view>
+    <view style="text-align: center;margin-bottom: 10rpx;" wx:if="{{loadTip}}">加载中...</view>
+  </block>
+  <navigator url="/pages/comment/commentIndex?menuName={{menuName}}" open-type="navigate">
+    <view class="commentRate">
+      去评论
+    </view>
+  </navigator>
+</view>

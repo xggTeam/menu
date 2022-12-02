@@ -1,0 +1,29 @@
+/* pages/detail/detailIndex.wxss */
+.detail {
+  padding: 20rpx;
+}
+
+.detailImg {
+  height: 200rpx;
+  width: 200rpx;
+}
+.detailRight{
+  margin-top: 20rpx;
+}
+.detailDes {
+  font-weight: bold;
+}
+.detailRate{
+  color: #666464;
+}
+.comment{
+  display: flex;
+  padding: 20rpx;
+}
+/* 去评论按钮 */
+.commentRate{
+  border: 1px solid #efefef;
+  text-align: center;
+  cursor: pointer;
+  padding: 10rpx 0;
+}

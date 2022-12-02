@@ -1,0 +1,11 @@
+// filter.wxs
+var filters = {
+  toFix: function (value) {       
+      var valueNum = parseFloat(value);
+      return valueNum.toFixed(1)
+      // 保留一位小数
+  }
+}
+module.exports = {
+  toFix: filters.toFix,
+}

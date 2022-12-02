@@ -1,0 +1,52 @@
+/* pages/home/homeIndex.wxss */
+.font35 {
+  font-size: 35rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.color3 {
+  color: #333;
+}
+
+.color6 {
+  color: #666;
+}
+
+.timeIcon {
+  color: #666;
+  font-size: 18rpx;
+  margin-left: 5rpx;
+}
+
+.list {
+  padding: 10rpx 50rpx;
+}
+
+.list_title {
+  line-height: 60rpx;
+}
+
+.list_only {
+  border: 1px solid #efefef;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  padding: 10rpx;
+  box-shadow: 2px 2px 2px #efefef;
+}
+
+.list_img {
+  height: 200rpx;
+  width: 200rpx;
+}
+
+.rate {
+  line-height: 200rpx;
+}
+
+.detailBtn {
+  margin-top: 10rpx;
+  font-weight: normal;
+  font-size: 10rpx;
+}

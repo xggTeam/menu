@@ -1,0 +1,40 @@
+<!--pages/home/homeIndex.wxml-->
+<view>
+  <view>
+    <picker mode="date" header-text="选择时间" value="{{date}}" bindchange="bindDateChange">
+      <view class="font35">
+        <text class="color3">当前选中时间：</text>
+        <text class="color6">{{date}}</text>
+      </view>
+    </picker>
+  </view>
+  <view>
+    <radio-group bindchange="radioChange" style="display: flex;justify-content: center;">
+      <label class="weui-cell weui-check__label" style="display: flex;margin-right: 30rpx;" wx:for="{{items}}" wx:key="index">
+        <view class="weui-cell__hd">
+          <radio value="{{item.value}}" checked="true" />
+        </view>
+        <view class="weui-cell__bd">{{item.name}}</view>
+      </label>
+    </radio-group>
+  </view>
+  <view class="list">
+    <view class="list_title">菜单列表</view>
+    <view>
+      <block wx:for="{{list}}" wx:key="index">
+        <navigator url="/pages/detail/detailIndex?menuName={{item.name}}&menuId={{item.rate}}" open-type="navigate">
+          <view class="list_only" bindtap="detailBtnClick">
+            <view style="text-align: center;">{{item.name}}</view>
+            <view style="display: flex;">
+              <image src="{{item.img}}" class="list_img" mode="aspectFit"></image>
+              <view class="rate">
+                <my-rate rate="{{item.rate}}" rateIsSelect="{{rateIsSelect}}"></my-rate>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+      <view style="text-align: center;margin-bottom: 10rpx;" wx:if="{{homeList}}">加载中...</view>
+    </view>
+  </view>
+</view>

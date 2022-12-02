@@ -1,0 +1,11 @@
+.scoreBox{
+  display: flex;
+}
+.startImg{
+  height: 50rpx;
+  width: 50rpx;
+}
+.star{
+  height: 50rpx;
+  width: 50rpx;
+}
