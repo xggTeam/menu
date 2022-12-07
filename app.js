@@ -12,6 +12,12 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+    /**
+     * 云开发环境，初始化
+     */
+    wx.cloud.init({
+      evn: "cloud1-0gmoyy4g42aefbe5"
+    })
   },
   globalData: {
     userInfo: null

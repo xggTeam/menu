@@ -1,5 +1,9 @@
 // pages/home/homeIndex.js
 import util from "../../utils/util"
+// wx.cloud.init({
+//   evn: "cloud1-0gmoyy4g42aefbe5"
+// })
+const DB = wx.cloud.database().collection('menu_home')
 Page({
 
   /**
@@ -42,6 +46,46 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    DB.get().then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+    DB.get({
+      success(res) {
+        console.log('success', res)
+      },
+      fail(err) {
+        console.log('fail', err)
+      }
+    })
+    wx.cloud.callFunction({
+      name: 'getOpenId',
+      success(res) {
+        console.log('回调 getOpenId', res)
+      },
+      fail(err) {
+        console.log('回调 getOpenId', err)
+      }
+    })
+    wx.cloud.callFunction({
+      name: 'getList',
+      success(res) {
+        console.log('回调 getList', res)
+      },
+      fail(err) {
+        console.log('回调 getList', err)
+      }
+    })
+    wx.cloud.callFunction({
+      name: 'lookUp',
+      success(res) {
+        console.log('回调 lookUp', res)
+      },
+      fail(err) {
+        console.log('回调 lookUp', err)
+      }
+    })
   },
   bindDateChange: function (e) {
     this.setData({
@@ -105,11 +149,11 @@ Page({
     this.setData({
       homeList: true
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       this.setData({
         homeList: false
       })
-    },2000)
+    }, 2000)
   },
 
   /**
