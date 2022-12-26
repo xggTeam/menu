@@ -42,6 +42,7 @@
 }
 
 .rate {
+  margin-left: 20rpx;
   line-height: 200rpx;
 }
 

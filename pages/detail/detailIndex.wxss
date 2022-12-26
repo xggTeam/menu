@@ -7,21 +7,28 @@
   height: 200rpx;
   width: 200rpx;
 }
-.detailRight{
+
+.detailRight {
   margin-top: 20rpx;
+  margin-left: 20rpx;
 }
+
 .detailDes {
   font-weight: bold;
 }
-.detailRate{
+
+.detailRate {
   color: #666464;
+  display: flex;
 }
-.comment{
+
+.comment {
   display: flex;
   padding: 20rpx;
 }
+
 /* 去评论按钮 */
-.commentRate{
+.commentRate {
   border: 1px solid #efefef;
   text-align: center;
   cursor: pointer;

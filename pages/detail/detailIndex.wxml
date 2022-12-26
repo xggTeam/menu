@@ -1,10 +1,12 @@
 <!--pages/detail/detailIndex.wxml-->
 <view class="detail">
   <view style="display: flex;">
-    <image class="detailImg" src="../../image/home.png" mode="aspectFit"></image>
+    <image class="detailImg" src="{{menuImg}}" mode="aspectFit"></image>
     <view class="detailRight">
       <text class="detailDes">{{menuName}}</text>
-      <view class="detailRate">评分：{{menuName}}</view>
+      <view class="detailRate">评分：
+        <my-rate rate="{{menuRate}}" rateIsSelect="{{rateIsSelect}}"></my-rate>
+      </view>
     </view>
   </view>
   <block>

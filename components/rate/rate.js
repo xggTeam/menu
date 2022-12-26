@@ -23,8 +23,8 @@ Component({
       { id: 5, level: '非常推荐', }
     ],
     rate: 3.5,
-    star_full: '/image/full_g.png',//星星图标 满星
-    star_empty: '/image/full.png',//星星图标 空星
+    star_full: '/image/full_gX.png',//星星图标 满星
+    star_empty: '/image/fullX.png',//星星图标 空星
     rateIsSelect: false
   },
   /**
@@ -32,7 +32,7 @@ Component({
    */
   observers: {
     "rate": (e) => {
-      console.log('监听 rate', e)
+      // console.log('监听 rate', e)
     },
   },
   /**

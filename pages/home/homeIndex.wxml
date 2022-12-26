@@ -12,7 +12,7 @@
     <radio-group bindchange="radioChange" style="display: flex;justify-content: center;">
       <label class="weui-cell weui-check__label" style="display: flex;margin-right: 30rpx;" wx:for="{{items}}" wx:key="index">
         <view class="weui-cell__hd">
-          <radio value="{{item.value}}" checked="true" />
+          <radio value="{{item.value}}" checked="{{item.checked}}" />
         </view>
         <view class="weui-cell__bd">{{item.name}}</view>
       </label>
@@ -22,11 +22,11 @@
     <view class="list_title">菜单列表</view>
     <view>
       <block wx:for="{{list}}" wx:key="index">
-        <navigator url="/pages/detail/detailIndex?menuName={{item.name}}&menuId={{item.rate}}" open-type="navigate">
+        <navigator url="/pages/detail/detailIndex?menuName={{item.menuName}}&menuRate={{item.rate}}&menuImg={{item.menuImg}}" open-type="navigate">
           <view class="list_only" bindtap="detailBtnClick">
-            <view style="text-align: center;">{{item.name}}</view>
+            <view style="text-align: center;">{{item.menuName}}</view>
             <view style="display: flex;">
-              <image src="{{item.img}}" class="list_img" mode="aspectFit"></image>
+              <image src="{{item.menuImg}}" class="list_img" mode="aspectFit"></image>
               <view class="rate">
                 <my-rate rate="{{item.rate}}" rateIsSelect="{{rateIsSelect}}"></my-rate>
               </view>

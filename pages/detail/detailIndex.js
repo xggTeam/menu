@@ -6,6 +6,7 @@ Page({
    */
   data: {
     menuName: '菜品名称及描述',
+    menuImg: '菜品图片',
     commentList: [
       { dec: 'sssadsadsad', rate: 3 },
       { dec: 'ffffffff', rate: 3 },
@@ -31,7 +32,9 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      menuName: options.menuName
+      menuName: options.menuName,
+      menuImg: options.menuImg,
+      menuRate: options.menuRate
     })
     /**
      * 动态修改标题
