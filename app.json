@@ -4,6 +4,7 @@
     "pages/myself/myselfIndex",
     "pages/comment/commentIndex",
     "pages/detail/detailIndex",
+    "pages/manager/managerIndex",
     "pages/index/index",
     "pages/logs/logs"
   ],

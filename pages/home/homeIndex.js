@@ -1,8 +1,8 @@
 // pages/home/homeIndex.js
 import util from "../../utils/util"
-// wx.cloud.init({
-//   evn: "cloud1-0gmoyy4g42aefbe5"
-// })
+wx.cloud.init({
+  evn: "cloud1-0gmoyy4g42aefbe5"
+})
 const DB = wx.cloud.database().collection('menu_home')
 Page({
 
@@ -46,6 +46,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // 权限问题
+    DB.count({
+      success(res) {
+        console.log('count', res)
+      }
+    })
     DB.get().then(res => {
       console.log(res)
     }).catch(err => {
@@ -84,6 +90,18 @@ Page({
       },
       fail(err) {
         console.log('回调 lookUp', err)
+      }
+    })
+    wx.cloud.callFunction({
+      name: 'getPage',
+      data: {
+        pageNo: 1
+      },
+      success(res) {
+        console.log('回调 getPage', res)
+      },
+      fail(err) {
+        console.log('回调 getPage', err)
       }
     })
   },
