@@ -1,7 +1,7 @@
 // index.js
 // 获取应用实例
 const app = getApp()
-
+let openInfo
 Page({
   data: {
     motto: 'Hello World',
@@ -9,7 +9,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
+    newList: []
   },
   // 事件处理函数
   bindViewTap() {
@@ -28,6 +29,39 @@ Page({
      */
     wx.setNavigationBarTitle({
       title: '我的'
+    })
+    wx.cloud.callFunction({ name: 'getOpenId' }).then(res => { openInfo = res.result })
+    this.getMyself()
+  },
+  getMyself() {
+    wx.showLoading({
+      title: '加载中。。。',
+    })
+    wx.cloud.callFunction({
+      name: "getMyselfList",
+      data: {
+        database: 'menu_home'
+      }
+    }).then(res => {
+      wx.hideLoading()
+      const newMySelfList = []
+      res.result.data.map(itemResult => {
+        itemResult.comment.map(itemComment => {
+          if (itemComment.openId === openInfo.openid) {
+            let commentList = []
+            commentList.push(...itemComment.childComment)
+            const params = {
+              menuImg: itemResult.menuImg,
+              menuName: itemResult.menuName,
+              comment: commentList
+            }
+            newMySelfList.push(params)
+          }
+        })
+      })
+      this.setData({
+        newList: newMySelfList
+      })
     })
   },
   getUserProfile(e) {

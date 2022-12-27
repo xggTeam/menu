@@ -23,6 +23,13 @@
     </block>
   </view>
   <view class="heardCon">
-
+    <block wx:for="{{ newList }}" wx:key="index">
+      <view style="display: flex;margin: 10rpx;">
+        <image src="{{item.menuImg}}" class="myImg" mode="aspectFit"></image>
+        <view style="line-height: 200rpx;margin-left: 20rpx;">
+          {{item.menuName}}
+        </view>
+      </view>
+    </block>
   </view>
 </view>
