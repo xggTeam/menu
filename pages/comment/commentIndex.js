@@ -74,9 +74,9 @@ Page({
         })
         setTimeout(() => {
           wx.hideLoading()
-          // wx.switchTab({
-          //   url: '/pages/home/homeIndex',
-          // })
+          wx.switchTab({
+            url: '/pages/home/homeIndex',
+          })
           //获取页面栈  
           // var pages = getCurrentPages();
           // if (pages.length > 1) {

@@ -31,7 +31,6 @@ Page({
       title: '我的'
     })
     wx.cloud.callFunction({ name: 'getOpenId' }).then(res => { openInfo = res.result })
-    this.getMyself()
   },
   getMyself() {
     wx.showLoading({
@@ -84,5 +83,8 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  onShow(){
+    this.getMyself()
   }
 })

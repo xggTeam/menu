@@ -43,8 +43,6 @@ Page({
       e.detail.value = 'night'
     }
     this.radioChange(e)
-    pageNo = 0
-    this.getDataList(pageNo)
   },
   getDataList(pageNo) {
     wx.showLoading({
@@ -153,8 +151,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // this.data.list = []
-    // this.getDataList(0)
+    this.data.list = []
+    pageNo = 0
+    this.getDataList(pageNo)
   },
 
   /**

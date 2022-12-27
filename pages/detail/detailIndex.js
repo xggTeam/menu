@@ -31,8 +31,6 @@ Page({
     wx.setNavigationBarTitle({
       title: options.menuName + "详情",
     })
-    pageNo = 0
-    this.getDetail(pageNo)
   },
   // 获取详情及评价
   getDetail(pageNo) {
@@ -81,7 +79,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    pageNo = 0
+    this.getDetail(pageNo)
   },
 
   /**
