@@ -1,20 +1,20 @@
 <!--pages/comment/commentIndex.wxml-->
 <view class="comment">
   <view style="display: flex;">
-    <image class="commentImg" src="../../image/home.png" mode="aspectFit"></image>
+    <image class="commentImg" src="{{menuImg}}" mode="aspectFit"></image>
     <view class="commentRight">
       <text class="commentDes">{{menuName}}</text>
     </view>
   </view>
   <view style="display: flex;margin: 30rpx 0;">
-    <text style="margin-right: 10rpx;">打分</text> <input placeholder="输入分数" type="number" style="width: 150rpx;margin-right: 100rpx;" />
+    <text style="margin-right: 10rpx;">打分</text> <input bindinput="bindInput" placeholder="输入分数" type="number" style="width: 150rpx;margin-right: 100rpx;" />
     <text style="margin-right: 10rpx;">评星</text>
-    <my-rate rate="" rateIsSelect="{{flag}}"></my-rate>
+    <my-rate id="rateScore" rateIsSelect="{{flag}}"></my-rate>
   </view>
   <view>
-    <textarea bindblur="bindTextAreaBlur" auto-height placeholder="请输入内容" style="border: 1px solid #efefef; box-shadow: 1px 3px 0 #efefef; min-height: 300rpx;max-height: 700rpx;" maxlength='-1'></textarea>
+    <textarea bindinput="bindTextAreaBlur" auto-height placeholder="请输入内容" style="border: 1px solid #efefef; box-shadow: 1px 3px 0 #efefef; min-height: 300rpx;max-height: 700rpx;" maxlength='-1'></textarea>
   </view>
   <view class="commentBtn" bindtap="commentBtn">
-    发布
+    提交
   </view>
 </view>

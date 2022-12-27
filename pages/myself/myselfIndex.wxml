@@ -1,23 +1,28 @@
-<!--pages/myself/myselfIndex.wxml-->
+<!--index.wxml-->
 <view>
-  <view class="heard">
-    <image src="../../image/home_bg.png" mode="aspectFit" class="myImg"></image>
-    <view style="display: inline;margin: 60rpx 0 60rpx 20rpx;">
-      <view style="margin-bottom: 30rpx;"> 用户昵称 </view>
-      <view wx:if="{{userFlag}}"> 用户 </view>
-      <view wx:else> 管理员 </view>
-    </view>
+  <view>
+    <block wx:if="{{canIUseOpenData}}">
+      <view style="display: flex;margin: 20rpx;">
+        <view class="userinfo-avatar">
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+        <view style="display: inline-grid">
+          <open-data class="userinfo-name" type="userNickName"></open-data>
+          <!-- 管理员 用户 -->
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
   </view>
-  <view wx:if="{{userFlag}}" class="heardCon">
-    我评价的
+  <view class="heardCon">
+
   </view>
-  <view wx:else class="heardCon">
-    <view>
-      我发布的
-    </view>
-    <view>
-      我评论的
-    </view>
-  </view>
-  <text bindtap="btn" style="cursor: pointer;border: 1px solid #000;">测试切换身份</text>
 </view>

@@ -45,12 +45,12 @@ Page({
     this.radioChange(e)
     pageNo = 0
     this.getDataList(pageNo)
-
   },
   getDataList(pageNo) {
     wx.showLoading({
       title: '加载中。。。',
     })
+    if (pageNo === undefined) return
     wx.cloud.callFunction({
       name: 'getList',
       data: {
@@ -68,6 +68,37 @@ Page({
           title: '没有更多数据了！！',
         })
       }
+      const menuId = res.result.data.map(itemId => { return itemId._id })
+      const array = []
+      menuId.map(itemIdMap => {
+        res.result.data.map((item, index) => {
+          if (itemIdMap === item._id) {
+            const childCommentArr = []
+            const newArr = {}
+            item.comment.map((itemComment) => {
+              childCommentArr.push(...itemComment.childComment)
+            })
+            let tempNum = 0
+            const rateArr = childCommentArr.map(item => {
+              return item.rate
+            })
+            rateArr.map(itemNum => {
+              tempNum += itemNum
+            })
+            newArr.menuId = item._id
+            newArr.childComment = childCommentArr
+            newArr.tempNum = rateArr.length === 0 ? 5 : tempNum / rateArr.length
+            array.push(newArr)
+          }
+        })
+      })
+      array.map(itemArr => {
+        res.result.data.map(itemResult => {
+          if (itemArr.menuId === itemResult._id) {
+            itemResult.rate = Math.round(itemArr.tempNum)
+          }
+        })
+      })
       this.setData({
         list: this.data.list.concat(res.result.data)
       })
@@ -122,7 +153,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // this.data.list = []
+    // this.getDataList(0)
   },
 
   /**

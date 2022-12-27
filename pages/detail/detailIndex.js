@@ -1,4 +1,5 @@
 // pages/detail/detailIndex.js
+let pageNo
 Page({
 
   /**
@@ -7,40 +8,66 @@ Page({
   data: {
     menuName: '菜品名称及描述',
     menuImg: '菜品图片',
-    commentList: [
-      { dec: 'sssadsadsad', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-      { dec: 'ffffffff', rate: 3 },
-    ],
-    loadTip: false
+    menuId: "菜品id",
+    commentList: [],
+    loadTip: false,
+    imgFlag: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log('options detail', options)
     this.setData({
       menuName: options.menuName,
       menuImg: options.menuImg,
-      menuRate: options.menuRate
+      menuRate: options.menuRate,
+      menuId: options.menuId
     })
     /**
      * 动态修改标题
      */
     wx.setNavigationBarTitle({
       title: options.menuName + "详情",
+    })
+    pageNo = 0
+    this.getDetail(pageNo)
+  },
+  // 获取详情及评价
+  getDetail(pageNo) {
+    wx.showLoading({
+      title: '加载中。。。',
+    })
+    wx.cloud.callFunction({
+      name: 'getDetail',
+      data: {
+        pageNo: 10 * pageNo, //第几条开始
+        pageSize: 10, //每页加载多少条
+        database: 'menu_home', //动态配置需要的数据库名称
+        menuId: this.data.menuId
+      }
+    }).then(res => {
+      if (res.result.data[0].comment.length <= 0) {
+        wx.showToast({
+          icon: 'none',
+          title: '没有更多数据了！！',
+        })
+      }
+      wx.hideLoading()
+      this.setData({
+        imgFlag: true
+      })
+      const newCommentList = []
+      res.result.data[0].comment.map(item => {
+        newCommentList.push(...item.childComment)
+      })
+      console.log('newCommentList', newCommentList)
+      this.setData({
+        commentList: newCommentList
+      })
+    }).catch(err => {
+
     })
   },
   /**
@@ -82,16 +109,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    console.log('ddddddddddd上拉加载')
-    this.setData({
-      loadTip: true
-    })
-    setTimeout(() => {
-      this.setData({
-        loadTip: false
-      })
-
-    }, 2000)
+    pageNo++
+    this.getDetail(pageNo)
   },
   scrollToLower() {
 

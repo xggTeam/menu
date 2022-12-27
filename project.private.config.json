@@ -4,5 +4,6 @@
   "setting": {
     "compileHotReLoad": false,
     "urlCheck": true
-  }
+  },
+  "condition": {}
 }

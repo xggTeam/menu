@@ -22,7 +22,7 @@
     <view class="list_title">菜单列表</view>
     <view>
       <block wx:for="{{list}}" wx:key="index">
-        <navigator url="/pages/detail/detailIndex?menuName={{item.menuName}}&menuRate={{item.rate}}&menuImg={{item.menuImg}}" open-type="navigate">
+        <navigator url="/pages/detail/detailIndex?menuName={{item.menuName}}&menuRate={{item.rate}}&menuImg={{item.menuImg}}&menuId={{item._id}}" open-type="navigate">
           <view class="list_only" bindtap="detailBtnClick">
             <view style="text-align: center;">{{item.menuName}}</view>
             <view style="display: flex;">
