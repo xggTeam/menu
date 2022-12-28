@@ -21,14 +21,11 @@ Page({
       sourceType: ['album', 'camera'],        //指定图片来源是相机还是相册,默认二者都有
       success: res => {
         const tempFilePaths = res.tempFilePaths
-        console.log('tempFilePaths', tempFilePaths[0])
-        wx.uploadFile({
-          url: 'example.png', //仅为示例，非真实的接口地址
+        wx.cloud.uploadFile({
+          cloudPath: 'example.png',
           filePath: tempFilePaths[0],
-          name: 'file',
           success(res) {
-            const data = res.data
-            console.log('sssssssssssss', data)
+            console.log('sssssssssssss', res)
           },
           fail(err) {
             console.log('err', err)
